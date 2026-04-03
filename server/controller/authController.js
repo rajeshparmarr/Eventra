@@ -1,7 +1,12 @@
 const User = require('../models/User.js')
 const OTP = require('../models/OTP.js')
 const bcrypt = require('bcryptjs')
-const {sendOTPEmail} = require('../utils/email.js')
+const { sendOTPEmail } = require('../utils/email.js')
+const jwt = require('jsonwebtoken')
+
+const generateToken = (id, role) => {
+    return jwt.sign({id,role},process.env.JWT_SECRET,{expiresIn:'7d'})
+}
 
 // Register User
 exports.registerUser = async (req, res) => {
@@ -35,4 +40,42 @@ exports.registerUser = async (req, res) => {
             error:error.message
         })
     }
+}
+
+// Login User 
+exports.loginUser = async (req, res) => {
+    const { email, password } = req.body;
+
+    let user = await User.findOne({ email });
+    if (!user) {
+        return res.status(400).json({
+            error:"Invalid Credentials"
+        })
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+        return res.status(400).json({
+            error: "Invalid Credentials.Please Sign up first"
+        });
+    }
+
+    if (!user.isVerified && user.role === 'user') {
+        const otp = Math.floor(1000000 + Math.random() * 9000000).toString();
+        await OTP.deleteMany({ email, action: 'account_verification' });
+        await OTP.create({ email, otp, action: 'account_verification' });
+        await sendOTPEmail(email, otp, 'account_verification');
+        return res.status(400).json({
+            error:"Account not verified. A new OTP has been sent to your email."
+        })
+    }
+
+    res.json({
+        message: "Login successful",
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        token:generateToken(user._id,user.role)
+    })
 }
