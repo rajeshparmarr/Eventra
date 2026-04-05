@@ -18,11 +18,13 @@ const bookingSchema = new mongoose.Schema({
     },
     paymentStatus: {
         type: String,
-        enum: ['non_paid', 'paid'],
+        enum: ['not_paid', 'paid'],
         default:"non_paid"
     },
     amount: {
         type: Number,
         required:true
     }
-},{timestamps:true})
+}, { timestamps: true })
+
+module.exports = mongoose.model("Booking",bookingSchema)
