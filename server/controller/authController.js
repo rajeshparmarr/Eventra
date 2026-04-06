@@ -2,7 +2,7 @@ const User = require("../models/User.js");
 const OTP = require("../models/OTP");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { sendOTPEmail } = require("../utils/email");
+const { sendOtpEmail } = require("../utils/email");
 
 const generateOTP = () =>
   Math.floor(100000 + Math.random() * 900000).toString();
@@ -30,13 +30,14 @@ exports.register = async (req, res) => {
 
     const otp = generateOTP();
     await OTP.create({ email, otp, action: "account_verification" });
-    await sendOTPEmail(email, otp, "account_verification");
+    await sendOtpEmail(email, otp, "account_verification");
 
     res.status(201).json({
       message: "OTP sent to email. Please verify.",
       email: user.email,
     });
   } catch (error) {
+    console.error("REGISTER ERROR:", error);
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 };

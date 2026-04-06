@@ -1,7 +1,7 @@
 const Booking = require("../models/Bookings.js");
 const Event = require("../models/Event");
 const OTP = require("../models/OTP");
-const { sendBookingEmail, sendOTPEmail } = require("../utils/email");
+const { sendBookingEmail, sendOtpEmail } = require("../utils/email");
 
 const generateOTP = () =>
   Math.floor(100000 + Math.random() * 900000).toString();
@@ -14,7 +14,7 @@ exports.sendBookingOTP = async (req, res) => {
       action: "event_booking",
     });
     await OTP.create({ email: req.user.email, otp, action: "event_booking" });
-    await sendOTPEmail(req.user.email, otp, "event_booking");
+    await sendOtpEmail(req.user.email, otp, "event_booking");
     res.json({ message: "OTP sent successfully" });
   } catch (error) {
     res

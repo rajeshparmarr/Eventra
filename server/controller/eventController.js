@@ -41,7 +41,13 @@ exports.createEvent = async (req, res) => {
       totalSeats,
       ticketPrice,
       image,
-    } = req.body;
+      } = req.body;
+      
+      if (!image) {
+        return res.status(400).json({ message: "Image is required" });
+      }
+      
+      
     const event = await Event.create({
       title,
       description,
@@ -51,11 +57,13 @@ exports.createEvent = async (req, res) => {
       totalSeats,
       availableSeats: totalSeats,
       ticketPrice: ticketPrice || 0,
-      image: image || "",
+      image,
       createdBy: req.user.id,
     });
-    res.status(201).json(event);
+      res.status(201).json(event);
+      console.log(event)
   } catch (error) {
+      console.log("Creating Event",error)
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 };

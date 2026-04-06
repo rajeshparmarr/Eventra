@@ -80,7 +80,7 @@ const events = [
     category: "Technology",
     totalSeats: 200,
     ticketPrice: 0,
-    imageUrl:
+    image:
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800",
   },
   {
@@ -92,7 +92,7 @@ const events = [
     category: "Music",
     totalSeats: 500,
     ticketPrice: 1500,
-    imageUrl:
+    image:
       "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=800",
   },
   {
@@ -104,7 +104,7 @@ const events = [
     category: "Business",
     totalSeats: 150,
     ticketPrice: 5000,
-    imageUrl:
+    image:
       "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800",
   },
   {
@@ -116,7 +116,7 @@ const events = [
     category: "Art",
     totalSeats: 300,
     ticketPrice: 200,
-    imageUrl:
+    image:
       "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&q=80&w=800",
   },
   {
@@ -128,7 +128,7 @@ const events = [
     category: "Business",
     totalSeats: 250,
     ticketPrice: 100,
-    imageUrl:
+    image:
       "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
   },
   {
@@ -140,7 +140,7 @@ const events = [
     category: "Technology",
     totalSeats: 100,
     ticketPrice: 600,
-    imageUrl:
+    image:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
   },
 ];
