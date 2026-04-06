@@ -25,7 +25,7 @@ exports.registerUser = async (req, res) => {
     try {
         const user = await User.create({name,email,password,hashedPassword, role:'user', isVerified:false})
 
-        const otp = Math.floor(1000000 + Math.random() * 9000000).toString();
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
         console.log(`Otp for ${email}: ${otp}  `)
         await OTP.create({ email, otp, action: "account_verification" });
         await sendOtpEmail(email, otp, 'account_verification')

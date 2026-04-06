@@ -28,7 +28,7 @@ exports.getEventById = async (req, res) => {
                 error:"Event not found"
             })
         }
-        res.josn(event);
+        res.json(event);
     } catch (error) {
         res.status(500).json({
             error: error.message
