@@ -142,7 +142,7 @@ const Home = () => {
                     The simplest, most dynamic way to manage, discover, and host world-class events in your local city. Let's make memories together.
                 </p>
                 <div className="text-xs text-gray-400 font-medium uppercase tracking-wider">
-                    &copy; {new Date().getFullYear()} Eventora Platform. All rights reserved.
+                    &copy; {new Date().getFullYear()} Eventra Platform. All rights reserved.
                 </div>
             </footer>
         </div>
