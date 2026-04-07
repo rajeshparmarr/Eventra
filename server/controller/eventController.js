@@ -61,7 +61,6 @@ exports.createEvent = async (req, res) => {
       createdBy: req.user.id,
     });
       res.status(201).json(event);
-      console.log(event)
   } catch (error) {
       console.log("Creating Event",error)
     res.status(500).json({ message: "Server Error", error: error.message });

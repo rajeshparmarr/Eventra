@@ -20,7 +20,6 @@ const EventDetail = () => {
         const fetchEvent = async () => {
             try {
                 const { data } = await api.get(`/events/${id}`);
-                console.log("EVENT DATA:", data);
                 setEvent(data);
             } catch (err) {
                 setError('Failed to load event details.');
@@ -71,7 +70,6 @@ const EventDetail = () => {
             ) : (
                 <div className="w-full h-64 bg-gray-900 flex items-center justify-center text-white/50 text-6xl font-black uppercase tracking-widest">
                         {event.category}
-                        console.log("Incoming Image",event.image)
                 </div>
             )}
 
